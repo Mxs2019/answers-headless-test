@@ -5,7 +5,10 @@ import { ResultCardProps } from "../types";
 const ProductCard = ({ result }: ResultCardProps) => {
   const { id, name } = result;
   return (
-    <div className={classnames("bg-gray-100 p-4 font-medium")}>{name}</div>
+    <div className={classnames("bg-gray-100 p-4 font-medium")}>
+      {name}
+      {id}
+    </div>
   );
 };
 

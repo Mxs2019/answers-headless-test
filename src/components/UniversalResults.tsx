@@ -33,7 +33,7 @@ const UniversalResults = ({ className }: Props) => {
         }
 
         return (
-          <div key={v.verticalKey}>
+          <div key={v.verticalKey + results.uuid}>
             <Section title={title ?? v.verticalKey}>
               {v.results.map((r) => (
                 <Card result={r} key={r.id} />
