@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AnswersActionsProvider } from "@yext/answers-headless-react";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useParams,
+} from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
+import config from "./answers.config";
+import UniversalSearch from "./pages/UniversalSearch";
 
+const VerticalPage = () => {
+  const { verticalKey } = useParams() as any;
+  const verticalConfig = config.verticals[verticalKey];
+  const VerticalPage = verticalConfig?.page ?? config.defaults?.page;
+  return (
+    <div key={verticalKey}>
+      <AnswersActionsProvider
+        {...config.providerConfig}
+        verticalKey={verticalKey}
+      >
+        <VerticalPage />
+      </AnswersActionsProvider>
+    </div>
+  );
+};
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <div>
+          <Switch>
+            <Route path="/" exact>
+              <UniversalSearch />
+            </Route>
+            <Route path="/:verticalKey">
+              <VerticalPage />
+            </Route>
+          </Switch>
+        </div>
+      </QueryParamProvider>
+    </Router>
   );
 }
 
