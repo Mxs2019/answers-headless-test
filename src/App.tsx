@@ -14,6 +14,8 @@ const VerticalPage = () => {
   const { verticalKey } = useParams() as any;
   const verticalConfig = config.verticals[verticalKey];
   const VerticalPage = verticalConfig?.page ?? config.defaults?.page;
+
+  if (!verticalKey) return <div></div>;
   return (
     <div key={verticalKey}>
       <AnswersActionsProvider
@@ -25,6 +27,14 @@ const VerticalPage = () => {
     </div>
   );
 };
+
+const UniversalPage = () => {
+  return (
+    <AnswersActionsProvider {...config.providerConfig}>
+      <UniversalSearch />
+    </AnswersActionsProvider>
+  );
+};
 function App() {
   return (
     <Router>
@@ -32,7 +42,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/" exact>
-              <UniversalSearch />
+              <UniversalPage />
             </Route>
             <Route path="/:verticalKey">
               <VerticalPage />

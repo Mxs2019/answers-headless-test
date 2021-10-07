@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
+
+.branded-focus {
+  @apply focus:outline-none focus:ring-brand focus:ring-2;
+}
 @tailwind utilities;

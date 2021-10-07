@@ -10,7 +10,7 @@ type SectionProps = {
 
 const GridSection = ({ title, children }: SectionProps) => {
   return (
-    <div className={classnames("mt-4")}>
+    <div className={classnames("")}>
       <SectionHeader>{title}</SectionHeader>
       <div className="grid grid-cols-4 gap-2">{children}</div>
     </div>

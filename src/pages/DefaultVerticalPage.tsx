@@ -1,9 +1,7 @@
 import { useAnswersState } from "@yext/answers-headless-react";
-import classnames from "classnames";
 import React from "react";
 import config from "../answers.config";
-import Nav from "../components/Nav";
-import SearchBar from "../components/SearchBar";
+import ContainerWithSearchAndNav from "../components/ContainerWithSearchAndNav";
 
 const DefaultVerticalPage = () => {
   const results = useAnswersState((state) => state.vertical.results);
@@ -16,9 +14,7 @@ const DefaultVerticalPage = () => {
   const Card = verticalConfig?.card ?? config.defaults.card;
 
   return (
-    <div className={classnames("container mx-auto max-w-md my-4")}>
-      <SearchBar />
-      <Nav />
+    <ContainerWithSearchAndNav>
       <div>
         {results?.verticalResults?.results?.map((r) => (
           <Card result={r} key={r.id} />
@@ -27,7 +23,7 @@ const DefaultVerticalPage = () => {
       {/* {results && results.verticalResults?.results.length === 0 && (
         <NoResults />
       )} */}
-    </div>
+    </ContainerWithSearchAndNav>
   );
 };
 

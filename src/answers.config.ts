@@ -1,11 +1,7 @@
-import DefaultCard from "./cards/DefaultCard";
-import ProductCard from "./cards/ProductCard";
-import PromoCard from "./cards/PromoCard";
+import Cards from "./cards";
+import Pages from "./pages";
 import { AnswersConfig } from "./types";
-import DefaultSection from "./universalSections/DefaultSection";
-import GridSection from "./universalSections/GridSection";
-import DefaultVerticalPage from "./verticalPages/DefaultVerticalPage";
-import GridPage from "./verticalPages/GridPage";
+import Sections from "./universalSections";
 
 const config: AnswersConfig = {
   providerConfig: {
@@ -14,19 +10,22 @@ const config: AnswersConfig = {
     locale: "en",
   },
   defaults: {
-    card: DefaultCard,
-    section: DefaultSection,
-    page: DefaultVerticalPage,
+    card: Cards.DefaultCard,
+    section: Sections.DefaultSection,
+    page: Pages.DefaultVerticalPage,
+  },
+  universal: {
+    path: "/",
   },
   verticals: {
     promos: {
-      card: PromoCard,
+      card: Cards.PromoCard,
       title: "Promotions",
     },
     products: {
-      section: GridSection,
-      card: ProductCard,
-      page: GridPage,
+      section: Sections.GridSection,
+      card: Cards.ProductCard,
+      page: Pages.GridPage,
       title: "Products",
     },
     articles: {

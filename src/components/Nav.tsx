@@ -23,9 +23,9 @@ const Tab = ({
     <Link
       to={to}
       className={classnames(
-        "text-xs text-gray-600 mt-2 px-2 py-1 cursor-pointer hover:bg-gray-200",
+        "text-sm text-gray-600 mt-2 px-3 py-1 cursor-pointer hover:bg-gray-200 branded-focus",
         {
-          "bg-gray-200 border-b-2 border-blue-700": active,
+          "bg-gray-200 border-b-2 border-brand": active,
         }
       )}
     >
@@ -42,7 +42,11 @@ const Nav = ({ className }: Props) => {
     "?" + (queryParam && queryParam?.length > 0 ? "query=" + queryParam : "");
   return (
     <div className={classnames("flex border-b mb-4")}>
-      <Tab title="All" to={"/" + queryParams} active={!activeVerticalKey} />
+      <Tab
+        title={config.universal.title ?? "All"}
+        to={"/" + queryParams}
+        active={!activeVerticalKey}
+      />
       {Object.keys(verticals).map((verticalKey) => {
         const vertical = verticals[verticalKey];
 

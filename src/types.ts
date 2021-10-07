@@ -9,6 +9,10 @@ export type AnswersConfig = {
     section: any;
     page: any;
   };
+  universal: {
+    path?: string;
+    title?: string;
+  };
   verticals: {
     [verticalKey: string]: {
       card?: any;

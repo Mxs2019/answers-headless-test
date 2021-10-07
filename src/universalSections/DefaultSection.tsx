@@ -10,7 +10,7 @@ type SectionProps = {
 
 const DefaultSection = ({ title, children }: SectionProps) => {
   return (
-    <div className={classnames("mt-4")}>
+    <div className={classnames("")}>
       <SectionHeader>{title}</SectionHeader>
       <div className="divide-y">{children}</div>
     </div>

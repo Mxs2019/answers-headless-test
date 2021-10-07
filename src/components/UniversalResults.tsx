@@ -11,7 +11,7 @@ type Props = {
 const UniversalResults = ({ className }: Props) => {
   const results = useAnswersState((state) => state.universal.results);
   return (
-    <div className={classnames(className)}>
+    <div className={classnames(className, "flex flex-col gap-8")}>
       {results?.verticalResults.map((v) => {
         // return <div>{v.verticalKey}</div>;
         const verticalConfig = config.verticals[v.verticalKey];
