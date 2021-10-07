@@ -16,11 +16,16 @@ const VerticalPageController = ({ verticalKey }: { verticalKey: string }) => {
   useEffect(() => {
     actions.setVerticalKey(verticalKey);
   }, [verticalKey]);
-  return (
-    <div>
-      <VerticalPage />
-    </div>
-  );
+  return <VerticalPage />;
+};
+
+const UniversalPageController = () => {
+  const actions = useAnswersActions();
+  useEffect(() => {
+    actions.setVerticalKey("");
+  }, []);
+
+  return <UniversalSearch />;
 };
 
 function App() {
@@ -31,7 +36,7 @@ function App() {
           <div>
             <Switch>
               <Route path="/" exact>
-                <UniversalSearch />
+                <UniversalPageController />
               </Route>
               <Route
                 path="/:verticalKey"
