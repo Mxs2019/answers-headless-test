@@ -2,6 +2,7 @@ import { useAnswersState } from "@yext/answers-headless-react";
 import classnames from "classnames";
 import React from "react";
 import config from "../answers.config";
+import NoResults from "./NoResults";
 
 type Props = {
   //Insert Props Here
@@ -42,6 +43,7 @@ const UniversalResults = ({ className }: Props) => {
           </div>
         );
       })}
+      {results?.verticalResults.length === 0 && <NoResults />}
     </div>
   );
 };

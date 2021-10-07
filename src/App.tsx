@@ -1,54 +1,48 @@
-import { AnswersActionsProvider } from "@yext/answers-headless-react";
-import React from "react";
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useParams,
-} from "react-router-dom";
+  AnswersActionsProvider,
+  useAnswersActions,
+} from "@yext/answers-headless-react";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import config from "./answers.config";
 import UniversalSearch from "./pages/UniversalSearch";
 
-const VerticalPage = () => {
-  const { verticalKey } = useParams() as any;
+const VerticalPageController = ({ verticalKey }: { verticalKey: string }) => {
   const verticalConfig = config.verticals[verticalKey];
   const VerticalPage = verticalConfig?.page ?? config.defaults?.page;
+  const actions = useAnswersActions();
 
-  if (!verticalKey) return <div></div>;
+  useEffect(() => {
+    actions.setVerticalKey(verticalKey);
+  }, [verticalKey]);
   return (
-    <div key={verticalKey}>
-      <AnswersActionsProvider
-        {...config.providerConfig}
-        verticalKey={verticalKey}
-      >
-        <VerticalPage />
-      </AnswersActionsProvider>
+    <div>
+      <VerticalPage />
     </div>
   );
 };
 
-const UniversalPage = () => {
-  return (
-    <AnswersActionsProvider {...config.providerConfig}>
-      <UniversalSearch />
-    </AnswersActionsProvider>
-  );
-};
 function App() {
   return (
     <Router>
       <QueryParamProvider ReactRouterRoute={Route}>
-        <div>
-          <Switch>
-            <Route path="/" exact>
-              <UniversalPage />
-            </Route>
-            <Route path="/:verticalKey">
-              <VerticalPage />
-            </Route>
-          </Switch>
-        </div>
+        <AnswersActionsProvider {...config.providerConfig}>
+          <div>
+            <Switch>
+              <Route path="/" exact>
+                <UniversalSearch />
+              </Route>
+              <Route
+                path="/:verticalKey"
+                render={({ match }) => {
+                  const { verticalKey } = match.params;
+                  return <VerticalPageController verticalKey={verticalKey} />;
+                }}
+              />
+            </Switch>
+          </div>
+        </AnswersActionsProvider>
       </QueryParamProvider>
     </Router>
   );
