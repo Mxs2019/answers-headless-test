@@ -5,8 +5,8 @@ import Sections from "./universalSections";
 
 const config: AnswersConfig = {
   providerConfig: {
-    apiKey: "ea21c38eeab10bca5be1fd56c5fb96e5",
-    experienceKey: "answers",
+    apiKey: "4c3f0e306d81a4c238153f5f7d792b6b",
+    experienceKey: "notion-experiences",
     locale: "en",
   },
   defaults: {
@@ -21,6 +21,9 @@ const config: AnswersConfig = {
     promos: {
       card: Cards.PromoCard,
       title: "Promotions",
+    },
+    links: {
+      page: Pages.LinksPage,
     },
     products: {
       section: Sections.GridSection,

@@ -5,14 +5,19 @@ type Props = {
   //Insert Props Here
   className?: string;
   children?: React.ReactNode;
+  narrow?: boolean;
 };
 
-const Container = ({ className, children }: Props) => {
+const Container = ({ className, children, narrow }: Props) => {
   return (
     <div
       className={classnames(
         className,
-        "container mx-auto max-w-screen-lg my-4 px-2 md:px-4"
+        "container mx-auto my-4 px-2 md:px-4 flex flex-col gap-4",
+        {
+          "max-w-screen-lg": !narrow,
+          "max-w-screen-sm": narrow,
+        }
       )}
     >
       {children}

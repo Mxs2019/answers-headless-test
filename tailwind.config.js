@@ -5,12 +5,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "green",
+        brand: "blue",
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/typography"),
+  ],
 };

@@ -27,6 +27,7 @@ export type ResultCardProps = {
   result: {
     id: string;
     name: string;
+    rawData: any;
   };
 };
 

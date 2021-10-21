@@ -1,7 +1,9 @@
 import { useAnswersState } from "@yext/answers-headless-react";
 import React from "react";
 import config from "../answers.config";
-import ContainerWithSearchAndNav from "../components/ContainerWithSearchAndNav";
+import Container from "../components/Container";
+import DirectAnswer from "../components/DirectAnswer";
+import SearchBar from "../components/SearchBar";
 import VerticalResults from "../components/VerticalResults";
 
 const DefaultVerticalPage = () => {
@@ -15,12 +17,15 @@ const DefaultVerticalPage = () => {
   const Card = verticalConfig?.card ?? config.defaults.card;
 
   return (
-    <ContainerWithSearchAndNav>
+    <Container narrow>
+      <SearchBar />
+      <DirectAnswer />
       <VerticalResults />
+
       {/* {results && results.verticalResults?.results.length === 0 && (
         <NoResults />
       )} */}
-    </ContainerWithSearchAndNav>
+    </Container>
   );
 };
 
