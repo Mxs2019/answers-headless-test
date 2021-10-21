@@ -8,8 +8,8 @@ const config: AnswersConfig = {
     primaryColor: "blue",
   },
   providerConfig: {
-    apiKey: "4c3f0e306d81a4c238153f5f7d792b6b",
-    experienceKey: "link-search",
+    apiKey: "387c91c8dc92b07b5cf8db280a0b225d",
+    experienceKey: "fins_demo_v2",
     locale: "en",
   },
   defaults: {

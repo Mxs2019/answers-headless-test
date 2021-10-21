@@ -11,7 +11,7 @@ export const getFieldValues = (
   url?: string;
 } => {
   const verticalConfig = config.verticals[verticalKey];
-  const { cardFields } = verticalConfig;
+  const { cardFields } = verticalConfig ?? {};
 
   //   Set Default Fields
   let id = result.id as string;
