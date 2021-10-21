@@ -37,7 +37,7 @@ const UniversalResults = ({ className }: Props) => {
           <div key={v.verticalKey + results.uuid}>
             <Section title={title ?? v.verticalKey}>
               {v.results.map((r) => (
-                <Card result={r} key={r.id} />
+                <Card result={r} key={r.id} verticalKey={v.verticalKey} />
               ))}
             </Section>
           </div>

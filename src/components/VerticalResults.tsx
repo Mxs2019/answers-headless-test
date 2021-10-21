@@ -14,7 +14,7 @@ const VerticalResults = () => {
   return (
     <div>
       {results?.verticalResults?.results?.map((r) => (
-        <Card result={r} key={r.id} />
+        <Card result={r} key={r.id} verticalKey={verticalKey} />
       ))}
     </div>
   );

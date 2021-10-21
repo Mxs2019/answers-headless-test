@@ -1,4 +1,10 @@
+import { Result } from "@yext/answers-core";
+import React from "react";
+
 export type AnswersConfig = {
+  style?: {
+    primaryColor?: string;
+  };
   providerConfig: {
     apiKey: string;
     experienceKey: string;
@@ -19,16 +25,18 @@ export type AnswersConfig = {
       section?: any;
       title?: string;
       page?: any;
+      cardFields?: {
+        title?: string;
+        body?: string;
+        url?: string;
+      };
     };
   };
 };
 
 export type ResultCardProps = {
-  result: {
-    id: string;
-    name: string;
-    rawData: any;
-  };
+  result: Result;
+  verticalKey: string;
 };
 
 export type VerticalPageProps = {

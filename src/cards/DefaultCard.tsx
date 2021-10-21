@@ -1,15 +1,13 @@
 import classnames from "classnames";
 import React from "react";
 import { ResultCardProps } from "../types";
+import { getFieldValues } from "../utilities/fields";
 
-const DefaultCard = ({ result }: ResultCardProps) => {
-  const { id, name } = result;
-  const body = result.rawData?.s_snippet ?? result.rawData?.body;
-  const title = name;
-  const href = result.rawData?.website ?? "#";
+const DefaultCard = ({ result, verticalKey }: ResultCardProps) => {
+  const { id, title, body, url } = getFieldValues(result, verticalKey);
   return (
     <div className={classnames("py-2")}>
-      <a href={href} className="text-brand hover:underline font-medium">
+      <a href={url} className="text-brand hover:underline font-medium">
         {title}
       </a>
       <div className="text-sm text-gray-600">{body}</div>

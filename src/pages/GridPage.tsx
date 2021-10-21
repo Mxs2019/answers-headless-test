@@ -32,7 +32,7 @@ const GridPage = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 w-full p-4">
         {results?.verticalResults?.results?.map((r) => (
-          <Card result={r} key={r.id} />
+          <Card result={r} key={r.id} verticalKey={verticalKey} />
         ))}
       </div>
     </div>

@@ -4,9 +4,12 @@ import { AnswersConfig } from "./types";
 import Sections from "./universalSections";
 
 const config: AnswersConfig = {
+  style: {
+    primaryColor: "blue",
+  },
   providerConfig: {
     apiKey: "4c3f0e306d81a4c238153f5f7d792b6b",
-    experienceKey: "notion-experiences",
+    experienceKey: "link-search",
     locale: "en",
   },
   defaults: {
@@ -24,6 +27,9 @@ const config: AnswersConfig = {
     },
     links: {
       page: Pages.LinksPage,
+      cardFields: {
+        body: "s_snippet",
+      },
     },
     products: {
       section: Sections.GridSection,
