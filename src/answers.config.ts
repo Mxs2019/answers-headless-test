@@ -5,7 +5,9 @@ import Sections from "./universalSections";
 
 const config: AnswersConfig = {
   style: {
-    primaryColor: "blue",
+    colors: {
+      brand: "blue",
+    },
   },
   providerConfig: {
     apiKey: "387c91c8dc92b07b5cf8db280a0b225d",

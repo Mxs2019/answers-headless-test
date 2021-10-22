@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "blue",
+        brand: "var(--brand)",
       },
     },
   },

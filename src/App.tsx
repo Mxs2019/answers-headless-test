@@ -29,6 +29,14 @@ const UniversalPageController = () => {
 };
 
 function App() {
+  useEffect(() => {
+    if (config.style?.colors?.brand) {
+      document.documentElement.style.setProperty(
+        "--brand",
+        config.style?.colors?.brand
+      );
+    }
+  }, []);
   return (
     <Router>
       <QueryParamProvider ReactRouterRoute={Route}>

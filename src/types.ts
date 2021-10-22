@@ -3,7 +3,9 @@ import React from "react";
 
 export type AnswersConfig = {
   style?: {
-    primaryColor?: string;
+    colors?: {
+      brand?: string;
+    };
   };
   providerConfig: {
     apiKey: string;
