@@ -12,7 +12,7 @@ const DefaultSection = ({ title, children }: SectionProps) => {
   return (
     <div className={classnames("")}>
       <SectionHeader>{title}</SectionHeader>
-      <div className="divide-y">{children}</div>
+      <div className="divide-y border-b">{children}</div>
     </div>
   );
 };

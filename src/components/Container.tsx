@@ -13,11 +13,7 @@ const Container = ({ className, children, narrow }: Props) => {
     <div
       className={classnames(
         className,
-        "container mx-auto my-4 px-2 md:px-4 flex flex-col gap-4",
-        {
-          "max-w-screen-lg": !narrow,
-          "max-w-screen-sm": narrow,
-        }
+        "container mx-auto my-4 px-2 md:px-4 flex flex-col gap-4 max-w-screen-md"
       )}
     >
       {children}

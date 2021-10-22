@@ -1,9 +1,6 @@
-import Cards from "./cards";
-import Pages from "./pages";
 import { AnswersConfig } from "./types";
-import Sections from "./universalSections";
 
-const config: AnswersConfig = {
+const defaultConfig: AnswersConfig = {
   style: {
     colors: {
       brand: "blue",
@@ -14,35 +11,11 @@ const config: AnswersConfig = {
     experienceKey: "fins_demo_v2",
     locale: "en",
   },
-  defaults: {
-    card: Cards.DefaultCard,
-    section: Sections.DefaultSection,
-    page: Pages.DefaultVerticalPage,
-  },
-  universal: {
-    path: "/",
-  },
   verticals: {
-    promos: {
-      card: Cards.PromoCard,
-      title: "Promotions",
-    },
-    links: {
-      page: Pages.LinksPage,
-      cardFields: {
-        body: "s_snippet",
-      },
-    },
-    products: {
-      section: Sections.GridSection,
-      card: Cards.ProductCard,
-      page: Pages.GridPage,
-      title: "Products",
-    },
-    articles: {
-      title: "THe Best Articles",
+    faq: {
+      card: "FAQ",
     },
   },
 };
 
-export default config;
+export default defaultConfig;

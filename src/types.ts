@@ -2,9 +2,9 @@ import { Result } from "@yext/answers-core";
 import React from "react";
 
 export type AnswersConfig = {
-  style?: {
-    colors?: {
-      brand?: string;
+  style: {
+    colors: {
+      brand: string;
     };
   };
   providerConfig: {
@@ -12,21 +12,11 @@ export type AnswersConfig = {
     experienceKey: string;
     locale: string;
   };
-  defaults: {
-    card: any;
-    section: any;
-    page: any;
-  };
-  universal: {
-    path?: string;
-    title?: string;
-  };
   verticals: {
     [verticalKey: string]: {
-      card?: any;
-      section?: any;
+      card?: string;
+      section?: string;
       title?: string;
-      page?: any;
       cardFields?: {
         title?: string;
         body?: string;

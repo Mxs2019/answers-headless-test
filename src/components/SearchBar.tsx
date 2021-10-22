@@ -5,6 +5,7 @@ import {
 import classnames from "classnames";
 import React, { useEffect } from "react";
 import { StringParam, useQueryParam } from "use-query-params";
+import ClearSearchIcon from "./icons/ClearSearchIcon";
 import SearchIcon from "./icons/SearchIcon";
 import Spinner from "./icons/Spinner";
 
@@ -56,7 +57,17 @@ const SearchBar = ({ className }: Props) => {
           onChange={(e) => actions.setQuery(e.target.value)}
           placeholder={`Search ${verticalKey ?? ""}`}
         />
-        <div className="text-gray-500 flex items-center">
+        <div className="text-gray-500 flex items-center gap-4">
+          {query && query.length > 0 && (
+            <button
+              className="focus:outline-none focus:ring-2 focus:ring-brand rounded-md focus:ring-offset-2"
+              type="button"
+              onClick={() => actions.setQuery("")}
+            >
+              <span className="sr-only">Clear Search</span>
+              <ClearSearchIcon />
+            </button>
+          )}
           {loading && <Spinner />}
           {!loading && (
             <button className="focus:outline-none focus:ring-2 focus:ring-brand rounded-md focus:ring-offset-2">

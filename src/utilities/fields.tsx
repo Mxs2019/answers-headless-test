@@ -17,8 +17,30 @@ export const getFieldValues = (
   let id = result.id as string;
   let title: React.ReactNode = result.name;
   let body = (result.rawData?.s_snippet ??
-    result.rawData?.body) as React.ReactNode;
+    result.rawData?.body ??
+    result.rawData?.answer) as React.ReactNode;
   let url = (result.rawData?.website as string) ?? "#";
+
+  // Link Search
+  if (result.rawData?.htmlTitle) {
+    title = (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: result.rawData?.htmlTitle as string,
+        }}
+      />
+    );
+  }
+
+  if (result.rawData?.htmlSnippet) {
+    body = (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: result.rawData?.htmlSnippet as string,
+        }}
+      />
+    );
+  }
 
   if (cardFields?.title) {
     title = result.rawData[cardFields?.title] as string;

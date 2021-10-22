@@ -7,8 +7,9 @@ type Props = {
 
 const SectionHeader = ({ children }: Props) => {
   return (
-    <div className="text-gray-700 uppercase tracking-wider text-xs font-medium">
-      {children}
+    <div className="text-gray-500 uppercase tracking-wider text-xs font-medium flex items-center">
+      <div className="flex-none pr-2">{children}</div>
+      <div className="bg-gray-200 w-full" style={{ height: "1px" }}></div>
     </div>
   );
 };
