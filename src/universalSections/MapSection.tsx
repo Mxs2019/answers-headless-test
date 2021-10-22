@@ -8,15 +8,16 @@ type SectionProps = {
   title: string;
 };
 
-const GridSection = ({ title, children }: SectionProps) => {
+const MapSection = ({ title, children }: SectionProps) => {
   return (
     <div className={classnames("")}>
       <SectionHeader>{title}</SectionHeader>
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2">
-        {children}
+      <div className="bg-green-300 text-green-700 text-3xl h-36 flex items-center justify-center">
+        Map Goes Here
       </div>
+      <div className="divide-y border-b">{children}</div>
     </div>
   );
 };
 
-export default GridSection;
+export default MapSection;

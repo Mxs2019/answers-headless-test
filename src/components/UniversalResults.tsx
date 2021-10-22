@@ -3,6 +3,7 @@ import classnames from "classnames";
 import React, { useContext, useEffect } from "react";
 import Cards from "../cards";
 import DefaultCard from "../cards/DefaultCard";
+import Sections from "../universalSections";
 import DefaultSection from "../universalSections/DefaultSection";
 import { ConfigContext } from "../utilities/configContext";
 import NoResults from "./NoResults";
@@ -31,7 +32,7 @@ const UniversalResults = ({ className, setVerticalKeys }: Props) => {
         const verticalConfig = config.verticals[v.verticalKey];
         const title = verticalConfig?.title;
         let Card = DefaultCard;
-        const Section = DefaultSection;
+        let Section = DefaultSection;
 
         // Override Vertical
         if (verticalConfig) {
@@ -40,9 +41,15 @@ const UniversalResults = ({ className, setVerticalKeys }: Props) => {
           }
         }
 
+        if (verticalConfig) {
+          if (verticalConfig.section && Sections[verticalConfig.section]) {
+            Section = Sections[verticalConfig.section].section;
+          }
+        }
+
         return (
           <div key={v.verticalKey + results.uuid}>
-            <Section title={title ?? v.verticalKey}>
+            <Section title={title && title?.length > 0 ? title : v.verticalKey}>
               {v.results.map((r) => (
                 <Card result={r} key={r.id} verticalKey={v.verticalKey} />
               ))}
