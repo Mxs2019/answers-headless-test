@@ -7,13 +7,12 @@ import Experience from "./Experience";
 // Set the configuration for your app
 // TODO: Replace with your project's config object
 const firebaseConfig = {
-  apiKey: "apiKey",
+  apiKey: "AIzaSyCIrWx9uTaK2oa0JfUu_zA2MjLM-zC99r8",
   authDomain: "projectId.firebaseapp.com",
   // For databases not in the us-central1 location, databaseURL will be of the
   // form https://[databaseName].[region].firebasedatabase.app.
   // For example, https://your-database-123.europe-west1.firebasedatabase.app
-  databaseURL: "https://databaseName.firebaseio.com",
-  storageBucket: "bucket.appspot.com",
+  databaseURL: "https://knowled-e24aa.firebaseio.com",
 };
 
 export const fb = initializeApp(firebaseConfig);
@@ -25,7 +24,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/editor">
+          <Route path="/" exact>
             <Editor />
           </Route>
           <Route path="/experiences/:experienceKey">

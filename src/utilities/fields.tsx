@@ -9,6 +9,7 @@ export const getFieldValues = (
   title?: React.ReactNode;
   body?: React.ReactNode;
   url?: string;
+  image?: string;
 } => {
   const verticalConfig = config.verticals[verticalKey];
   const { cardFields } = verticalConfig ?? {};
@@ -18,8 +19,11 @@ export const getFieldValues = (
   let title: React.ReactNode = result.name;
   let body = (result.rawData?.s_snippet ??
     result.rawData?.body ??
+    result.rawData?.description ??
     result.rawData?.answer) as React.ReactNode;
   let url = (result.rawData?.website as string) ?? "#";
+
+  let image = null;
 
   // Link Search
   if (result.rawData?.htmlTitle) {
@@ -30,6 +34,17 @@ export const getFieldValues = (
         }}
       />
     );
+  }
+
+  if (
+    result.rawData?.photoGallery &&
+    // @ts-ignore
+    result.rawData?.photoGallery?.length > 0 &&
+    // @ts-ignore
+    result.rawData?.photoGallery[0].image?.url
+  ) {
+    // @ts-ignore
+    image = result.rawData?.photoGallery?.[0].image?.url as string;
   }
 
   if (result.rawData?.htmlSnippet) {
@@ -59,5 +74,6 @@ export const getFieldValues = (
     title,
     body,
     url,
+    image: image ?? undefined,
   };
 };

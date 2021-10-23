@@ -2,7 +2,7 @@ import { getDatabase, push, ref } from "@firebase/database";
 import { Dialog, Transition } from "@headlessui/react";
 import cx from "classnames";
 import React, { Fragment, useState } from "react";
-import { FaCheck, FaCopy } from "react-icons/fa";
+import { FaCheck, FaCopy, FaLink } from "react-icons/fa";
 import { MdChevronLeft, MdShare } from "react-icons/md";
 //@ts-ignore
 import { useImmer } from "use-immer";
@@ -12,7 +12,7 @@ import ConfigEditor from "./ConfigEditor";
 import { AnswersConfig } from "./types";
 import { ConfigContext } from "./utilities/configContext";
 
-const SIDEBAR_WIDTH = 400;
+const SIDEBAR_WIDTH = 500;
 const TOP_BAR_HEIGHT = 40;
 
 function Editor() {
@@ -37,10 +37,10 @@ function Editor() {
     <div className="">
       <div
         style={{ height: `${TOP_BAR_HEIGHT}px` }}
-        className="bg-gray-200 border-b flex items-center justify-end px-4 gap-4"
+        className="bg-gray-200 border-b border-gray-300 flex items-center justify-end px-4 gap-4"
       >
         <button
-          className="border px-4 py-1 text-sm bg-gray-800 hover:bg-gray-900 text-white rounded flex items-center gap-2"
+          className="border px-4 py-1 text-sm bg-gray-500 hover:bg-gray-900 text-white rounded flex items-center gap-2"
           onClick={publishExperience}
         >
           Publish
@@ -143,13 +143,22 @@ function Editor() {
                     </div>
                   </div>
                 </div>
-                <div className="border flex items-center bg-gray-200 rounded mt-4 ">
-                  <div className="font-mono text-sm  rounded px-2 py-1 text-gray-700 w-full">
-                    http://{window.location.hostname}/experiences/{publishedKey}
-                  </div>
-                  <button className="border-l px-2 h-full text-gray-500">
+                <div className="border flex items-center bg-gray-100 rounded mt-4 ">
+                  <input
+                    className="font-mono text-sm  rounded px-2 py-1 text-gray-700 w-full bg-transparent"
+                    value={`http://${window.location.host}/experiences/${publishedKey}`}
+                  />
+
+                  <button className="border-l px-2 h-full text-gray-500 border-gray-300  flex items-center hover:text-gray-700">
                     <FaCopy />
                   </button>
+                  <a
+                    className="border-l px-2 h-full text-gray-500 border-gray-300  flex items-center hover:text-gray-700"
+                    href={`http://${window.location.host}/experiences/${publishedKey}`}
+                    target="_blank"
+                  >
+                    <FaLink />
+                  </a>
                 </div>
               </div>
             </Transition.Child>

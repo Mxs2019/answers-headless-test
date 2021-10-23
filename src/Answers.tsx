@@ -1,9 +1,10 @@
 import { AnswersActionsProvider } from "@yext/answers-headless-react";
 import classnames from "classnames";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { QueryParamProvider } from "use-query-params";
 import Container from "./components/Container";
 import SearchBar from "./components/SearchBar";
+import ThemeWrapper from "./components/ThemeWrapper";
 import UniversalResults from "./components/UniversalResults";
 import { ConfigContext } from "./utilities/configContext";
 
@@ -15,22 +16,22 @@ type Props = {
 
 const Answers = ({ className, setVerticalKeys }: Props) => {
   const config = useContext(ConfigContext);
-  useEffect(() => {
-    if (config.style?.colors?.brand) {
-      document.documentElement.style.setProperty(
-        "--brand",
-        config.style?.colors?.brand
-      );
-    }
-  }, [config.style?.colors?.brand]);
+
+  if (!config) return null;
+
+  console.log(config);
+
+  console.log("RENDERING");
   return (
     <div className={classnames(className, "w-full mx-auto")}>
       <QueryParamProvider>
         <AnswersActionsProvider {...config.providerConfig}>
-          <Container>
-            <SearchBar />
-            <UniversalResults setVerticalKeys={setVerticalKeys} />
-          </Container>
+          <ThemeWrapper>
+            <Container>
+              <SearchBar />
+              <UniversalResults setVerticalKeys={setVerticalKeys} />
+            </Container>
+          </ThemeWrapper>
         </AnswersActionsProvider>
       </QueryParamProvider>
     </div>

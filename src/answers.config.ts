@@ -7,15 +7,11 @@ const defaultConfig: AnswersConfig = {
     },
   },
   providerConfig: {
-    apiKey: "387c91c8dc92b07b5cf8db280a0b225d",
-    experienceKey: "fins_demo_v2",
+    apiKey: "7bce922a5847aff36dc33345921ba700",
+    experienceKey: "dtc_demo",
     locale: "en",
   },
-  verticals: {
-    faq: {
-      card: "FAQ",
-    },
-  },
+  verticals: {},
 };
 
 export default defaultConfig;

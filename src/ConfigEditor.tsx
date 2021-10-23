@@ -9,13 +9,12 @@ import JSONInput from "react-json-editor-ajrm";
 import locale from "react-json-editor-ajrm/locale/en";
 import { Updater } from "use-immer";
 import useOnClickOutside from "use-onclickoutside";
-import { CardTypesArray } from "./cards";
 import Expandable from "./components/Expandable";
 import Select from "./configComponents/Select";
 import TextInput from "./configComponents/TextInput";
 import Toggle from "./configComponents/Toggle";
 import { AnswersConfig } from "./types";
-import { SectionTypesArray } from "./universalSections";
+import { SectionTypesArray } from "./universalSections/sectionTypesRegistry";
 
 type Props = {
   //Insert Props Here
@@ -41,7 +40,10 @@ const ConfigEditor = ({
 
   return (
     <div className={classnames(className)}>
-      <div className="flex items-center justify-between border-b p-4">
+      <div
+        className="flex items-center justify-between border-b p-4 border-gray-300 bg-gray-200 border-r"
+        style={{ height: "40px" }}
+      >
         <div className="uppercase tracking-wider text-gray-500 text-sm">
           Experience Designer
         </div>
@@ -53,7 +55,7 @@ const ConfigEditor = ({
       {!json && (
         <div>
           <Expandable
-            className="border-b"
+            className="border-b border-gray-300"
             title={
               <div className="px-4 flex gap-2 items-center">
                 <FaCog className="text-gray-500" />
@@ -66,22 +68,26 @@ const ConfigEditor = ({
                 value={config.providerConfig.apiKey}
                 name="apiKey"
                 label="API Key"
-                onChange={(v) =>
-                  setConfig((c) => (c.providerConfig.apiKey = v))
-                }
+                onChange={(v) => {
+                  setConfig((c) => {
+                    c.providerConfig.apiKey = v;
+                  });
+                }}
               />
               <TextInput
                 value={config.providerConfig.experienceKey}
                 name="experienceKey"
                 label="Experience Key"
-                onChange={(v) =>
-                  setConfig((c) => (c.providerConfig.experienceKey = v))
-                }
+                onChange={(v) => {
+                  setConfig((c) => {
+                    c.providerConfig.experienceKey = v;
+                  });
+                }}
               />
             </div>
           </Expandable>
           <Expandable
-            className="border-b"
+            className="border-b border-gray-300"
             defaultExpanded={true}
             title={
               <div className="px-4 flex gap-2 items-center">
@@ -90,13 +96,13 @@ const ConfigEditor = ({
               </div>
             }
           >
-            <div className="flex flex-col gap-4 px-4">
+            <div className="flex flex-col px-4">
               <label className="block text-sm font-medium text-gray-700">
                 Primary Color
               </label>
               <button
                 onClick={() => setShowColorPicker((c) => !c)}
-                className="border px-2 py-1 rounded font-mono text-white"
+                className="border px-2 py-1 rounded font-mono text-white mt-1"
                 style={{ backgroundColor: config.style.colors.brand }}
               >
                 {config.style.colors.brand}
@@ -117,7 +123,7 @@ const ConfigEditor = ({
           </Expandable>
           <Expandable
             defaultExpanded={true}
-            className="border-b"
+            className="border-b border-gray-300"
             title={
               <div className="px-4 flex gap-2 items-center">
                 <FaGripLines className="text-gray-500" />
@@ -125,70 +131,44 @@ const ConfigEditor = ({
               </div>
             }
           >
-            <div className="flex flex-col px-4">
+            <div className="flex flex-col px-4 gap-1">
               <p className="pb-2 text-gray-600 text-sm">
                 Style verticals here. Run searches on the right to see different
                 verticals
               </p>
-              {[...verticalKeys].map((key) => {
+              {[
+                ...verticalKeys,
+                // ...configVerticalKeys.filter((c) => !verticalKeys.includes(c)),
+              ].map((key) => {
                 const verticalConfig = config.verticals[key];
                 return (
-                  <Expandable
-                    key={key}
-                    title={
-                      <div className="font-mono tracking-wider uppercase">
-                        {key}
-                      </div>
-                    }
-                    className="border-b"
-                    defaultExpanded={true}
-                  >
-                    <div className="border-l pl-2 flex flex-col gap-2">
-                      <TextInput
-                        value={verticalConfig?.title ?? ""}
-                        name="sectionTitle"
-                        label="Section Title"
-                        placeholder={key}
-                        onChange={(v) =>
-                          setConfig((c) => {
-                            _.set(c, `verticals[${key}].title`, v);
-                          })
-                        }
-                      />
-                      <Select
-                        onChange={(v) =>
-                          setConfig((c) => {
-                            _.set(c, `verticals[${key}].card`, v);
-                          })
-                        }
-                        name="card"
-                        placeholder={"Choose Card Type"}
-                        value={verticalConfig?.card}
-                        options={CardTypesArray.map((c) => {
-                          return {
-                            value: c.key,
-                            label: c.name,
-                          };
-                        })}
-                      />
-                      <Select
-                        onChange={(v) =>
-                          setConfig((c) => {
-                            _.set(c, `verticals[${key}].section`, v);
-                          })
-                        }
-                        name="section"
-                        placeholder={"Choose Section Type"}
-                        value={verticalConfig?.section}
-                        options={SectionTypesArray.map((c) => {
-                          return {
-                            value: c.key,
-                            label: c.name,
-                          };
-                        })}
-                      />
-                    </div>
-                  </Expandable>
+                  <div className="grid grid-cols-2 gap-1" key={key}>
+                    <input
+                      value={config?.verticals?.[key]?.title ?? key}
+                      className="bg-transparent -ml-2 pl-2"
+                      onChange={(e) => {
+                        setConfig((c) => {
+                          _.set(c, `verticals[${key}].title`, e.target.value);
+                        });
+                      }}
+                    />
+                    <Select
+                      onChange={(v) =>
+                        setConfig((c) => {
+                          _.set(c, `verticals[${key}].section`, v);
+                        })
+                      }
+                      name="section"
+                      placeholder={"Choose Section Type"}
+                      value={verticalConfig?.section}
+                      options={SectionTypesArray.map((c) => {
+                        return {
+                          value: c.key,
+                          label: c.name,
+                        };
+                      })}
+                    />
+                  </div>
                 );
               })}
             </div>

@@ -4,16 +4,15 @@ import React from "react";
 type Props = {
   //Insert Props Here
   className?: string;
-  children?: React.ReactNode;
-  narrow?: boolean;
+  children: React.ReactNode;
 };
 
-const Container = ({ className, children, narrow }: Props) => {
+const ErrorCard = ({ className, children }: Props) => {
   return (
     <div
       className={classnames(
         className,
-        "container mx-auto my-4 px-4 md:px-4 flex flex-col gap-4 max-w-screen-md"
+        "p-12 bg-red-100 text-red-700 flex items-center justify-center"
       )}
     >
       {children}
@@ -21,4 +20,4 @@ const Container = ({ className, children, narrow }: Props) => {
   );
 };
 
-export default Container;
+export default ErrorCard;

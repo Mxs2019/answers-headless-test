@@ -2663,6 +2663,13 @@
   "resolved" "https://registry.npmjs.org/@types/long/-/long-4.0.1.tgz"
   "version" "4.0.1"
 
+"@types/mapbox-gl@^2.4.2":
+  "integrity" "sha512-mKgjmhUN780YGy9ZEyJK0Sr9gMtERmTQimGsIa5WrBHPlBXdmjYfqtz8nSMI7hOnQFphcuSMyqQswaQESFLHsA=="
+  "resolved" "https://registry.npmjs.org/@types/mapbox-gl/-/mapbox-gl-2.4.2.tgz"
+  "version" "2.4.2"
+  dependencies:
+    "@types/geojson" "*"
+
 "@types/mdast@^3.0.0":
   "integrity" "sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA=="
   "resolved" "https://registry.npmjs.org/@types/mdast/-/mdast-3.0.10.tgz"
@@ -3569,6 +3576,11 @@
     "picocolors" "^0.2.1"
     "postcss" "^7.0.32"
     "postcss-value-parser" "^4.1.0"
+
+"awesome-phonenumber@^2.64.0":
+  "integrity" "sha512-mwnZcIv8b/Iy1yn7NrmA1s3C0OBZ4EEgZjCBExS6Vo9rfRLLQoq0leozHqzrnWzDYiFW22X4gxH3rSbMmu9vrA=="
+  "resolved" "https://registry.npmjs.org/awesome-phonenumber/-/awesome-phonenumber-2.64.0.tgz"
+  "version" "2.64.0"
 
 "axe-core@^4.0.2":
   "integrity" "sha512-/lqqLAmuIPi79WYfRpy2i8z+x+vxU3zX2uAm0gs1q52qTuKwolOj1P8XbufpXcsydrpKx2yGn2wzAnxCMV86QA=="

@@ -26,10 +26,14 @@ const Experience = ({ className }: Props) => {
   if (!config) return <div></div>;
 
   return (
-    <div className={classnames(className)}>
-      <ConfigContext.Provider value={config}>
-        <Answers />
-      </ConfigContext.Provider>
+    <div>
+      {config && (
+        <div className={classnames(className)}>
+          <ConfigContext.Provider value={config as AnswersConfig}>
+            <Answers />
+          </ConfigContext.Provider>
+        </div>
+      )}
     </div>
   );
 };
