@@ -9,7 +9,7 @@ type Props = {
 };
 
 const DefaultCard = ({ result, verticalKey }: Props) => {
-  const { id, title, body, url } = getFieldValues(result, verticalKey);
+  const { title, body, url } = getFieldValues(result, verticalKey);
   return (
     <div className={classnames("py-2")}>
       <a href={url} className="text-brand hover:underline font-medium">

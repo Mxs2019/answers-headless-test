@@ -14,7 +14,7 @@ type Props = {
 const METERS_TO_MILES = 0.000621371;
 
 const LocationCard = ({ result, verticalKey, index }: Props) => {
-  const { id, title, body, url } = getFieldValues(result, verticalKey);
+  const { title, url } = getFieldValues(result, verticalKey);
   const address = result.rawData?.address as {
     line1: string;
     city: string;

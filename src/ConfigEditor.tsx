@@ -11,7 +11,6 @@ import { Updater } from "use-immer";
 import useOnClickOutside from "use-onclickoutside";
 import Expandable from "./components/Expandable";
 import Select from "./configComponents/Select";
-import TextInput from "./configComponents/TextInput";
 import Toggle from "./configComponents/Toggle";
 import { AnswersConfig } from "./types";
 import { SectionTypesArray } from "./universalSections/sectionTypesRegistry";
@@ -22,6 +21,7 @@ type Props = {
   config: AnswersConfig;
   setConfig: Updater<AnswersConfig>;
   verticalKeys: string[];
+  onChangeProviderConfig: () => void;
 };
 
 const ConfigEditor = ({
@@ -29,6 +29,7 @@ const ConfigEditor = ({
   config,
   setConfig,
   verticalKeys,
+  onChangeProviderConfig,
 }: Props) => {
   const [json, setJson] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
@@ -36,7 +37,7 @@ const ConfigEditor = ({
   const ref = React.useRef(null);
   useOnClickOutside(ref, () => setShowColorPicker(false));
 
-  const configVerticalKeys = Object.keys(config.verticals);
+  // const configVerticalKeys = Object.keys(config.verticals);
 
   return (
     <div className={classnames(className)}>
@@ -44,9 +45,15 @@ const ConfigEditor = ({
         className="flex items-center justify-between border-b p-4 border-gray-300 bg-gray-200 border-r"
         style={{ height: "40px" }}
       >
-        <div className="uppercase tracking-wider text-gray-500 text-sm">
-          Experience Designer
-        </div>
+        <button
+          className="flex items-center gap-2 hover:bg-gray-300 -m-1 p-1 rounded"
+          onClick={onChangeProviderConfig}
+        >
+          <FaCog className="text-gray-500" />
+          <div className="uppercase tracking-wider text-gray-500 text-sm">
+            {config.providerConfig.experienceKey}
+          </div>
+        </button>
         <div className="flex items-center gap-2">
           <Toggle enabled={json} onChange={setJson} />
           <MdCode className="text-lg text-gray-500" />
@@ -54,38 +61,6 @@ const ConfigEditor = ({
       </div>
       {!json && (
         <div>
-          <Expandable
-            className="border-b border-gray-300"
-            title={
-              <div className="px-4 flex gap-2 items-center">
-                <FaCog className="text-gray-500" />
-                <div>API Configuration</div>
-              </div>
-            }
-          >
-            <div className="flex flex-col gap-4 px-4">
-              <TextInput
-                value={config.providerConfig.apiKey}
-                name="apiKey"
-                label="API Key"
-                onChange={(v) => {
-                  setConfig((c) => {
-                    c.providerConfig.apiKey = v;
-                  });
-                }}
-              />
-              <TextInput
-                value={config.providerConfig.experienceKey}
-                name="experienceKey"
-                label="Experience Key"
-                onChange={(v) => {
-                  setConfig((c) => {
-                    c.providerConfig.experienceKey = v;
-                  });
-                }}
-              />
-            </div>
-          </Expandable>
           <Expandable
             className="border-b border-gray-300"
             defaultExpanded={true}

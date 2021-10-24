@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import LocationCard from "../cards/LocationCard";
 import SectionHeader from "../components/SectionHeader";
 import { SectionProps } from "../types";
@@ -11,9 +11,9 @@ mapboxgl.accessToken =
 const LocationsMapSection = ({ title, results, verticalKey }: SectionProps) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
-  const [zoom, setZoom] = useState(9);
+  // const [lng, setLng] = useState(-70.9);
+  // const [lat, setLat] = useState(42.35);
+  // const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -23,8 +23,8 @@ const LocationsMapSection = ({ title, results, verticalKey }: SectionProps) => {
       // @ts-ignore
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [lng, lat],
-      zoom: zoom,
+      // center: [lng, lat],
+      // zoom: zoom,
       attributionControl: false,
       scrollZoom: false,
     });

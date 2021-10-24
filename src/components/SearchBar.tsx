@@ -3,8 +3,7 @@ import {
   useAnswersState,
 } from "@yext/answers-headless-react";
 import classnames from "classnames";
-import React, { useEffect } from "react";
-import { StringParam, useQueryParam } from "use-query-params";
+import React from "react";
 import ClearSearchIcon from "./icons/ClearSearchIcon";
 import SearchIcon from "./icons/SearchIcon";
 import Spinner from "./icons/Spinner";
@@ -15,7 +14,7 @@ type Props = {
 };
 
 const SearchBar = ({ className }: Props) => {
-  const [queryParam, setQueryParam] = useQueryParam("query", StringParam);
+  // const [queryParam, setQueryParam] = useQueryParam("query", StringParam);
 
   const actions = useAnswersActions();
   const query = useAnswersState((state) => state.query.query);
@@ -23,15 +22,6 @@ const SearchBar = ({ className }: Props) => {
     (state) => state.vertical.searchLoading ?? state.universal.searchLoading
   );
   const verticalKey = useAnswersState((state) => state.vertical?.key);
-
-  useEffect(() => {
-    if ((queryParam && queryParam.length > 0) || verticalKey) {
-      if (queryParam) {
-        actions.setQuery(queryParam);
-      }
-      runSearch();
-    }
-  }, []);
 
   const runSearch = () => {
     if (verticalKey) {
@@ -41,6 +31,16 @@ const SearchBar = ({ className }: Props) => {
     }
   };
 
+  // useEffect(() => {
+  //   if ((queryParam && queryParam.length > 0) || verticalKey) {
+  //     if (queryParam) {
+  //       actions.setQuery(queryParam);
+  //     }
+  //     runSearch();
+  //   }
+  //   //@ts-ignore
+  // }, []);
+
   return (
     <div className={classnames(className)}>
       <form
@@ -48,7 +48,7 @@ const SearchBar = ({ className }: Props) => {
         onSubmit={(e) => {
           e.preventDefault();
           runSearch();
-          setQueryParam(query);
+          // setQueryParam(query);
         }}
       >
         <input

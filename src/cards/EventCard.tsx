@@ -12,9 +12,7 @@ type Props = {
 };
 
 const EventCard = ({ result, verticalKey }: Props) => {
-  const { id, title, body, url } = getFieldValues(result, verticalKey);
-
-  console.log(result);
+  const { title, body, url } = getFieldValues(result, verticalKey);
 
   const rawData = result.rawData as any;
 

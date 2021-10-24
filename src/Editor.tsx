@@ -1,14 +1,16 @@
 import { getDatabase, push, ref } from "@firebase/database";
 import { Dialog, Transition } from "@headlessui/react";
 import cx from "classnames";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { FaCheck, FaCopy, FaLink } from "react-icons/fa";
 import { MdChevronLeft, MdShare } from "react-icons/md";
 //@ts-ignore
 import { useImmer } from "use-immer";
 import Answers from "./Answers";
 import defaultConfig from "./answers.config";
+import Modal from "./components/Modal";
 import ConfigEditor from "./ConfigEditor";
+import ProviderConfigModal from "./ProviderConfigModal";
 import { AnswersConfig } from "./types";
 import { ConfigContext } from "./utilities/configContext";
 
@@ -20,6 +22,8 @@ function Editor() {
   const [configExpanded, setConfigExpaned] = useState(true);
   const [verticalKeys, setVerticalKeys] = useState<string[]>([]);
   const [showPublishModal, setShowPublishModal] = useState(false);
+  const [showConfigModal, setShowConfigModal] = useState(false);
+
   const [publishedKey, setPublishedKey] = useState<string>();
 
   const publishExperience = () => {
@@ -32,6 +36,16 @@ function Editor() {
 
     // Publish to Firebase
   };
+
+  useEffect(() => {
+    if (
+      config.providerConfig.experienceKey.length === 0 ||
+      config.providerConfig.apiKey.length === 0
+    ) {
+      setShowConfigModal(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setShowConfigModal]);
 
   return (
     <div className="">
@@ -72,6 +86,7 @@ function Editor() {
         }}
       >
         <ConfigEditor
+          onChangeProviderConfig={() => setShowConfigModal(true)}
           setConfig={setConfig}
           config={config}
           verticalKeys={verticalKeys}
@@ -156,6 +171,7 @@ function Editor() {
                     className="border-l px-2 h-full text-gray-500 border-gray-300  flex items-center hover:text-gray-700"
                     href={`http://${window.location.host}/experiences/${publishedKey}`}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <FaLink />
                   </a>
@@ -165,6 +181,13 @@ function Editor() {
           </div>
         </Dialog>
       </Transition.Root>
+      <Modal show={showConfigModal} onHide={() => setShowConfigModal(false)}>
+        <ProviderConfigModal
+          config={config}
+          setConfig={setConfig}
+          onSave={() => setShowConfigModal(false)}
+        />
+      </Modal>
     </div>
   );
 }

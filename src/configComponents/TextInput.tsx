@@ -32,7 +32,7 @@ const TextInput = ({
           <input
             name={name}
             id={name}
-            className="px-3 py-2 shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            className="px-3 py-2 shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md border"
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange(e.target.value)}

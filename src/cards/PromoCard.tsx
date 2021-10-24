@@ -7,7 +7,7 @@ type Props = {
   verticalKey: string;
 };
 const PromoCard = ({ result }: Props) => {
-  const { id, name } = result;
+  const { name } = result;
   return <div className={classnames("bg-gray-100 p-8 text-sm")}>{name}</div>;
 };
 

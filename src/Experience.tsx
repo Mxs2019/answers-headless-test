@@ -15,9 +15,8 @@ const Experience = ({ className }: Props) => {
   const { experienceKey } = useParams<{ experienceKey: string }>();
   const [config, setConfig] = useState<AnswersConfig>();
 
-  const db = getDatabase();
-
   useEffect(() => {
+    const db = getDatabase();
     get(ref(db, `experiences/${experienceKey}`)).then((value) => {
       setConfig(value.toJSON() as AnswersConfig);
     });

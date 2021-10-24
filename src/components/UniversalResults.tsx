@@ -18,11 +18,13 @@ const UniversalResults = ({ className, setVerticalKeys }: Props) => {
   const verticalKeys =
     results?.verticalResults?.map((v) => v.verticalKey) ?? [];
 
+  const keysString = verticalKeys.join(", ");
   useEffect(() => {
     if (setVerticalKeys) {
       setVerticalKeys(verticalKeys);
     }
-  }, [verticalKeys.join(", "), setVerticalKeys]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [keysString, setVerticalKeys]);
   return (
     <div className={classnames(className, "flex flex-col gap-8")}>
       {results?.verticalResults.map((v) => {
